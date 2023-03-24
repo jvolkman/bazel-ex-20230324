@@ -1,0 +1,19 @@
+
+cc_import(
+  name = "valsrc",
+  shared_library = "valsrc/libvalsrc.so",
+  hdrs = ["valsrc/valsrc.h"],
+)
+
+cc_library(
+  name = "value_retriever",
+  srcs = ["value_retriever.c"],
+  hdrs = ["value_retriever.h"],
+  deps = [":valsrc"],
+)
+
+cc_binary(
+  name = "test",
+  srcs = ["test.c"],
+  deps = [":value_retriever"],
+)
